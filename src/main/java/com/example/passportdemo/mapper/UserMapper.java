@@ -2,6 +2,7 @@ package com.example.passportdemo.mapper;
 
 import com.example.passportdemo.entity.UserEntity;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -13,5 +14,7 @@ public interface UserMapper {
 
 @Insert("insert into t_user (name)values(#{name})")
 void insert(String name);
+@Select("select * from  t_user where name = #{name}")
+UserEntity queryUser(String name);
 
 }

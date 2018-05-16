@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="/js/jquery-1.7.2.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <title>hello</title>
@@ -8,14 +9,30 @@
 <body>
 <from id="login" action="">
 请输入名字
-<input th:type="name" name="username"/>
-<input type="button" id="submit" th:value="提交"></input>
+<input th:type="name" id="username"/>
+<button id="btn1" type="button"> submit </button>
+    <div id="userInfo"></div>
 </from>
 </body>
 <script>
 $(function () {
-    $("#submit").bind("click", function () {
-      alert("2222222");
+
+    $("#btn1").click(function(){
+        var username=$("#username").val();
+        alert("2222222"+username);
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/hello/queryUser",
+            data: {userName: username},
+            dataType: "html",
+            success: function (data) {
+                $("#userInfo").html(data);
+            },
+            complete:function(){
+                alert("成功了");
+            }
+        });
     })
 
 })
