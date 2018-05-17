@@ -1,10 +1,12 @@
 package com.example.passportdemo.entity;
 
 
+import java.io.Serializable;
 
-public class UserEntity {
-    public Long Id;
-    public String  name;
+public class UserEntity implements Serializable{
+
+    private Long Id;
+    private String  name;
 
     public Long getId() {
         return Id;

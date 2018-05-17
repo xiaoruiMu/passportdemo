@@ -17,4 +17,9 @@ void insert(String name);
 @Select("select * from  t_user where name = #{name}")
 UserEntity queryUser(String name);
 
+
+@Select("select * from  t_user")
+ List<UserEntity> queryAllUser();
+
+
 }

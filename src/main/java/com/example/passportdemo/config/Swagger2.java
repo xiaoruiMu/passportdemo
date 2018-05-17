@@ -1,4 +1,4 @@
-package com.example.passportdemo.swaggerConfig;
+package com.example.passportdemo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
