@@ -36,15 +36,15 @@ public class Sums {
     }
 
     public static void main(String[] args) throws Exception {
-        List list=new ArrayList(){  new Sum(0,10)};
-        ExecutorService executor = Executors.newFixedThreadPool(3);
-        List<Future<Long>> results = executor.invokeAll(new ArrayList<Sum>(
-                new Sum(0, 10), new Sum(0, 1_000), new Sum(0, 1_000_000)
-        ));
-        executor.shutdown();
-
-        for (Future<Long> result : results) {
-            System.out.println(result.get());
-        }
+//        List list=new ArrayList(){  new Sum(0,10)};
+//        ExecutorService executor = Executors.newFixedThreadPool(3);
+//        List<Future<Long>> results = executor.invokeAll(new ArrayList<Sum>(
+//                new Sum(0, 10), new Sum(0, 1_000), new Sum(0, 1_000_000)
+//        ));
+//        executor.shutdown();
+//
+//        for (Future<Long> result : results) {
+//            System.out.println(result.get());
+//        }
     }
 }
