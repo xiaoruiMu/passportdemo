@@ -29,6 +29,8 @@ public class Globaltix {
     private static final String CANCEL_ORDER="/transaction/revoke";
     private static final String QUERY_ORDER="/transaction/getTransactionDetailsByReferenceNumber";
     public static final String ACCESS_TOKEN="access_token";
+
+    public static final String CREADIT_BALANCE="/credit/getCreditByReseller";
     @Resource
     private static StringRedisTemplate stringRedisTemplate;
 
@@ -161,6 +163,27 @@ public class Globaltix {
         }
     }
 
+    public static void creditBalance(String reqMethod) {
+        String authorization="Bearer"+"\n"+"eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOm51bGwsInN1YiI6InJlc2VsbGVyQGdsb2JhbHRpeC5jb20iLCJleHAiOjE1MzEyOTE4MDEsImlhdCI6MTUzMTIwNTQwMSwicm9sZXMiOlsiUkVTRUxMRVJfQURNSU4iLCJSRVNFTExFUl9GSU5BTkNFIiwiUkVTRUxMRVJfT1BFUkFUSU9OUyJdfQ.Tfp7sJ_9NguyCHhqPa6toqe51LFXf2wirvxU9lHqtC8";
+        Map<String, Object> header = new HashMap<String, Object>();
+        header.put("Accept-Version", ACCEPT_VERSION);
+        header.put("Authorization", authorization);
+
+        String req_url=GT_URL+reqMethod;
+        System.out.println("req_url===="+req_url);
+        String response=  HttpUtil.requestGetNew(req_url,header);
+        System.out.println("response"+response);
+        JSONObject rst1 = JSONObject.fromObject(response);
+        System.out.println(rst1.get("success"));
+        if("true".equals(rst1.getString("success"))){
+            String data=rst1.getString("data");
+            JSONObject dataObject = JSONObject.fromObject(data);
+            Long balance=dataObject.getLong("balance");
+            System.out.println("balance:"+balance);
+        }
+
+
+    }
 
 
 
@@ -169,13 +192,24 @@ public class Globaltix {
 
 
 
-
-    public static void main(String args[]){
+    public static void main(String args[]) throws Exception{
 //      authentication("reseller@globaltix.com","12345",AUTH_URL);
 //        getAllListingCountry(LIST_COUNTRY_URL);
 //       getTicketType(TICKET_LIST_URL,21L);
-        createBooking(CRETAE_BOOKING);
+//        createBooking(CRETAE_BOOKING);
 //        cancelOrder(CANCEL_ORDER,"IDYLHW3AGT");
 //        queryOrder(QUERY_ORDER,"IDYLHW3AGT");
+
+//        creditBalance(CREADIT_BALANCE);
+
+        String req="sss";
+        System.out.println(req.getBytes("UTF-8"));
+        Map<String, String> authData = new HashMap<String, String>();
+        authData.put("oid", null);
+        authData.put("code", "2018071165957414");
+        authData.put("status", "1");
+        String reqJson = JSONObject.fromObject(authData).toString();
+        System.out.println(reqJson);
+        System.out.println(reqJson.getBytes("UTF-8"));
     }
 }

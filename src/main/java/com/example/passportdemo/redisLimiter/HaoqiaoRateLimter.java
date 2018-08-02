@@ -10,7 +10,7 @@ public class HaoqiaoRateLimter {
         RedisLimiter rt1 = RedisLimiter.create(1d,"HAO_QIAO");
         RateLimiter rt = RateLimiter.create(1d);
         while (true){
-            System.out.println(rt.acquire());
+            System.out.println(rt1.acquire());
 //            Thread.sleep(508);
         }
 //        System.out.println(2 * TimeUnit.MINUTES.toSeconds(1) );

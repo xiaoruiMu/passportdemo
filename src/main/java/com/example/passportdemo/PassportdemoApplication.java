@@ -22,6 +22,7 @@ public class PassportdemoApplication {
 //	}
 
 	public static void main(String[] args) {
+		System.setProperty("es.set.netty.runtime.available.processors", "false");
 		ConfigurableApplicationContext ctx=SpringApplication.run(PassportdemoApplication.class, args);
 		System.out.println("server.port: " + (ctx.getEnvironment().getProperty("server.port")) );
 		System.out.println("author.zhName: " + (ctx.getEnvironment().getProperty("author.zhName")) );
